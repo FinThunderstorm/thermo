@@ -1,57 +1,60 @@
-const webpack = require("webpack")
-const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
-const TerserPlugin = require("terser-webpack-plugin")
+/* eslint-disable */
+const webpack = require('webpack')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const config = {
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthash].js",
-    asyncChunks: true,
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
+    asyncChunks: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "thermo",
-      filename: "index.html",
-      template: "public/index.html",
+      title: 'thermo',
+      filename: 'index.html',
+      template: 'public/index.html'
     }),
-    new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: "production", // use 'development' unless process.env.NODE_ENV is defined
+      NODE_ENV: 'production', // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: false,
-      API_ENDPOINT: "",
+      API_ENDPOINT: ''
     }),
+    new ESLintPlugin({ extensions: ['ts', 'tsx', 'json', 'css'] })
   ],
   devServer: {
-    static: { directory: path.join(__dirname, "dist") },
+    static: { directory: path.join(__dirname, 'dist') },
     hot: true,
     port: process.env.PORT || 4000,
-    host: "127.0.0.1",
+    host: '127.0.0.1'
   },
   mode: process.env.NODE_ENV,
   module: {
     rules: [
       {
-        type: "javascript/auto",
+        type: 'javascript/auto',
         test: /\.(sa|sc|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.ts(x)?$/,
-        loader: "ts-loader",
-        exclude: /node_modules/,
-      },
-    ],
+        loader: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".css"],
+    extensions: ['.tsx', '.ts', '.js', '.css']
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
@@ -60,19 +63,19 @@ const config = {
           name(module, chunks, cacheGroupKey) {
             const moduleFileName = module
               .identifier()
-              .split("/")
+              .split('/')
               .reduceRight((item) => item)
-            const allChunksNames = chunks.map((item) => item.name).join("~")
+            const allChunksNames = chunks.map((item) => item.name).join('~')
             return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`
           },
-          chunks: "async",
+          chunks: 'async'
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
+          reuseExistingChunk: true
+        }
+      }
     },
     minimize: true,
     minimizer: [
@@ -81,13 +84,13 @@ const config = {
         minify: TerserPlugin.swcMinify,
         terserOptions: {
           sourceMap:
-            process.env.NODE_ENV === "development" ? { url: "inline" } : false,
-          compress: true,
-        },
+            process.env.NODE_ENV === 'development' ? { url: 'inline' } : false,
+          compress: true
+        }
       }),
-      new CssMinimizerPlugin(),
-    ],
-  },
+      new CssMinimizerPlugin()
+    ]
+  }
 }
 
 module.exports = config
