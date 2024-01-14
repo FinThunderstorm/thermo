@@ -23,7 +23,7 @@ const config = {
     }),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production', // use 'development' unless process.env.NODE_ENV is defined
+      NODE_ENV: 'production',
       APP_ENV: 'production',
       BUILT_AT: new Date().toString(),
       DEBUG: false,
