@@ -11,7 +11,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const config = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', process.env.NODE_ENV),
     filename: '[name].[contenthash].js',
     asyncChunks: true
   },

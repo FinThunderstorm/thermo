@@ -11,7 +11,7 @@ function main() {
 
     get_environment_variables
 
-    npm run build:prod
+    npm run build
     npm start
 
     popd
