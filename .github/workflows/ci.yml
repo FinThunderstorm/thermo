@@ -8,6 +8,7 @@ permissions:
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+  AWS_PROFILE: ${{ secrets.AWS_PROFILE }}
 
 jobs:
   test:
@@ -46,6 +47,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4.0.1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: ${{ secrets.AWS_PROFILE }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: deploy.sh
         env:
