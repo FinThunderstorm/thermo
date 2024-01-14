@@ -50,7 +50,9 @@ function npm_ci() {
         echo "package-lock.json has not changed, no need for npm ci"
     else
         echo "package-lock.json has changed, running npm ci"
-        npm ci
+
+        NODE_ENV=${1:-development} npm ci
+
         shasum "package-lock.json" > "node_modules/package-lock.json.sha1"
     fi
 
