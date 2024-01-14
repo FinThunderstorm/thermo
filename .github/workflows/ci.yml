@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+
+permissions:
+  id-token: write
+  contents: read
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+
+jobs:
+  build-n-push:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://thermo.alanen.dev
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v3.5.3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2.2.0
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Run Deploy.sh
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: ./deploy.sh
