@@ -20,8 +20,7 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.aws_region
-  profile = "alanendev"
+  region = var.aws_region
 }
 
 provider "aws" {
