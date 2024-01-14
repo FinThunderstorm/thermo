@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4.1.1
+      - name: Configure OpenTofu for Terraform
+        uses: opentofu/setup-opentofu@v1
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.1
         with:
