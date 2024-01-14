@@ -4,18 +4,21 @@
   "description": "a thermostatic project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve",
     "prettier": "prettier --write src/**/*.{ts,tsx,css}",
-    "eslint": "eslint --ext .ts,.tsx src/"
+    "eslint": "eslint --ext .ts,.tsx src/",
+    "test": "playwright test",
+    "test:install": "playwright install --with-deps",
+    "start": "serve -l ${PORT:-4020}  dist/"
   },
   "author": "Tuomas Alanen <tuomas@alanen.dev>",
   "license": "The Don’t Ask Me About It License",
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
@@ -33,6 +36,7 @@
     "prettier": "^3.2.1",
     "sass": "^1.69.7",
     "sass-loader": "^13.3.3",
+    "serve": "^14.2.1",
     "style-loader": "^3.3.4",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
