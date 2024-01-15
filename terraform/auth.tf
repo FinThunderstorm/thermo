@@ -27,7 +27,7 @@ resource "aws_cognito_user_pool" "thermo" {
   }
 
   user_pool_add_ons {
-    advanced_security_mode = true
+    advanced_security_mode = "ENFORCED"
   }
 
   account_recovery_setting {
