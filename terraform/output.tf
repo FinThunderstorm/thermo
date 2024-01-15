@@ -1,5 +1,5 @@
 output "auth_endpoint" {
-  value       = aws_cognito_user_pool.endpoint
+  value       = aws_cognito_user_pool.thermo.endpoint
   sensitive   = true
   description = "User authentication endpoint for frontend"
 }

@@ -19,7 +19,7 @@ resource "aws_cognito_user_pool" "thermo" {
   }
 
   user_attribute_update_settings {
-    attributes_require_verification_before_update = "email"
+    attributes_require_verification_before_update = ["email"]
   }
 
   username_configuration {
