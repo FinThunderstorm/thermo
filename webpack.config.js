@@ -27,7 +27,9 @@ const config = {
       APP_ENV: 'production',
       BUILT_AT: new Date().toString(),
       DEBUG: false,
-      API_ENDPOINT: ''
+      API_ENDPOINT: '',
+      AUTH_USER_POOL_ID: process.env.AUTH_USER_POOL_ID,
+      AUTH_CLIENT_ID: process.env.AUTH_CLIENT_ID
     }),
     new ESLintPlugin({ extensions: ['ts', 'tsx', 'json', 'css'] }),
     new CopyPlugin({

@@ -7,7 +7,7 @@ resource "aws_s3_object" "static" {
   for_each = module.out.files
 
   key                    = each.key
-  bucket                 = aws_s3_bucket.app.id
+  bucket                 = var.bucket_id
   source                 = each.value.source_path
   etag                   = each.value.digests.sha256
   content_type           = each.value.content_type

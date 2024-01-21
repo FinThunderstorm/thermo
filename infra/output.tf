@@ -1,7 +1,7 @@
-output "auth_endpoint" {
-  value       = aws_cognito_user_pool.thermo.endpoint
+output "bucket_id" {
+  value       = aws_s3_bucket.app.id
   sensitive   = true
-  description = "User authentication endpoint for frontend"
+  description = "S3 Bucket ID used for hosting the application"
 }
 
 output "auth_user_pool_id" {
@@ -15,3 +15,4 @@ output "auth_user_pool_app_client_id" {
   sensitive   = true
   description = "User Pool App Client Id used in frontend authentication"
 }
+

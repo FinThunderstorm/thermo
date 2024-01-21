@@ -1,11 +1,8 @@
 resource "aws_cognito_user_pool" "thermo" {
-  name              = "thermo-auth"
-  mfa_configuration = "ON"
-  alias_attributes  = ["email"]
-
-  device_configuration {
-    challenge_required_on_new_device = true
-  }
+  name                     = "thermo-auth"
+  mfa_configuration        = "ON"
+  alias_attributes         = ["email"]
+  auto_verified_attributes = ["email"]
 
   password_policy {
     minimum_length    = 15
