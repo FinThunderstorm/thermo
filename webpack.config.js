@@ -28,7 +28,7 @@ const config = {
       BUILT_AT: new Date().toString(),
       DEBUG: false,
       API_ENDPOINT: '',
-      AUTH_USER_POOL_ID: process.env.AUTH_USER_POOL_ID,
+      AWS_REGION: process.env.AWS_REGION,
       AUTH_CLIENT_ID: process.env.AUTH_CLIENT_ID
     }),
     new ESLintPlugin({ extensions: ['ts', 'tsx', 'json', 'css'] }),
@@ -40,7 +40,8 @@ const config = {
     static: { directory: path.join(__dirname, 'dist') },
     hot: true,
     port: process.env.PORT || 4000,
-    host: '127.0.0.1'
+    host: '127.0.0.1',
+    historyApiFallback: true
   },
   mode:
     process.env.NODE_ENV === 'test'

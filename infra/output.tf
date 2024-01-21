@@ -4,10 +4,10 @@ output "bucket_id" {
   description = "S3 Bucket ID used for hosting the application"
 }
 
-output "auth_user_pool_id" {
-  value       = aws_cognito_user_pool.thermo.id
+output "aws_region" {
+  value       = var.aws_region
   sensitive   = true
-  description = "User Pool Id used in frontend authentication"
+  description = "Used AWS Region"
 }
 
 output "auth_user_pool_app_client_id" {

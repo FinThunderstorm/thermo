@@ -40,7 +40,8 @@ resource "aws_cognito_user_pool" "thermo" {
 }
 
 resource "aws_cognito_user_pool_client" "thermo" {
-  name          = "thermo-auth-client"
-  user_pool_id  = aws_cognito_user_pool.thermo.id
-  callback_urls = ["https://${var.domain_name}/auth/callback"]
+  name                = "thermo-auth-client"
+  user_pool_id        = aws_cognito_user_pool.thermo.id
+  callback_urls       = ["https://${var.domain_name}/auth/callback"]
+  explicit_auth_flows = ["USER_PASSWORD_AUTH"]
 }

@@ -26,7 +26,7 @@ function main {
   pushd "$infra_dir"
   tofu apply -input=false -auto-approve
   export TF_VAR_bucket_id=$(tofu output -raw bucket_id)
-  export AUTH_USER_POOL_ID=$(tofu output -raw auth_user_pool_id)
+  export AWS_REGION=$(tofu output -raw aws_region)
   export AUTH_CLIENT_ID=$(tofu output -raw auth_user_pool_app_client_id)
   popd
   echo ::endgroup::
