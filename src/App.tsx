@@ -1,9 +1,18 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import AuthProvider from './contexts/AuthContext'
+
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-cyan-500">Hello world!</h1>
-      <p>{process.env.BUILT_AT}</p>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   )
 }
 
