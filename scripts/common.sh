@@ -51,7 +51,7 @@ function npm_ci() {
     else
         echo "package-lock.json has changed, running npm ci"
 
-        NODE_ENV=${1:-development} npm ci --force # temp fix to install with force as React canary does not match version checkers
+        NODE_ENV=${1:-development} npm ci
 
         shasum "package-lock.json" > "node_modules/package-lock.json.sha1"
     fi
