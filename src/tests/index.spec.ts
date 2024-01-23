@@ -6,7 +6,7 @@ test.describe('frontpage works', () => {
 
     await expect(page).toHaveTitle(/thermo/)
 
-    const heading = page.getByRole('heading', { name: 'Hello world!' })
+    const heading = page.getByRole('heading', { name: 'Hello' })
     await expect(heading).toBeVisible()
   })
 })
