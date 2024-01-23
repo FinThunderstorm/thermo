@@ -78,7 +78,5 @@ function get_environment_variables() {
         export PORT=${PORT:-"4020"}
         export APP_ENV="production"
         export NODE_ENV="production"
-        export AWS_REGION=${AWS_REGION}
-        export AUTH_CLIENT_ID=${AUTH_CLIENT_ID}
     fi
 }
